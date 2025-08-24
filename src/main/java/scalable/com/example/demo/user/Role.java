@@ -1,4 +1,4 @@
-package scalable.com.example.demo.model;
+package scalable.com.example.demo.user;
 
 public enum Role {
     USER,

@@ -11,16 +11,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import scalable.com.example.demo.repo.UserRepository;
+import scalable.com.example.demo.user.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfiguration {
     private final UserRepository userRepository;
 
-    public ApplicationConfiguration(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Bean
     UserDetailsService userDetailsService(){

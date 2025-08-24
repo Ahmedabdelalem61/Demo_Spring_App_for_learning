@@ -1,7 +1,6 @@
-package scalable.com.example.demo.repo;
+package scalable.com.example.demo.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import scalable.com.example.demo.model.User;
 
 import java.util.Optional;
 
