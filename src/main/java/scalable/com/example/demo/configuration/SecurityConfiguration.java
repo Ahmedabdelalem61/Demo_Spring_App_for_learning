@@ -1,4 +1,4 @@
-package com.alibou.security.config;
+package scalable.com.example.demo.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

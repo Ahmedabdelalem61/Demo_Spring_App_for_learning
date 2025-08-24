@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/post-quote")
+@RequestMapping("/api/v1/post-quote")
 @RequiredArgsConstructor
 public class PostQuoteController {
 
     @GetMapping
     public ResponseEntity<String> postQuote(){
-        return ResponseEntity.ok("Na3eem elga7l are Calling you htklsn?");
+        return ResponseEntity.ok("Na3eem elgahl are Calling you htklsn?");
     }
 
 }
