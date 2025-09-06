@@ -28,10 +28,20 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
+        // identify user exists before creating a new one and throw exception if something is wrong
+        if (repository.findByEmail(request.getEmail()).isPresent()) {
+            return AuthenticationResponse.builder()
+                    .successful(false)
+                    .message("User Already Exists")
+                    .build();
+        }
+        // new user
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .message("User Created Successfully")
+                .successful(true)
                 .build();
     }
 
@@ -44,6 +54,6 @@ public class AuthenticationService {
         );
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwt = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwt).build();
+        return AuthenticationResponse.builder().token(jwt).successful(true).message("Authenticated Successfully").build();
     }
 }

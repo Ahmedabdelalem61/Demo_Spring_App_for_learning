@@ -2,6 +2,7 @@ package scalable.com.example.demo.auth;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +20,17 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ){
-        return ResponseEntity.ok(service.register(request));
+        AuthenticationResponse authenticationResponse = service.register(request);
+
+        if (!authenticationResponse.isSuccessful()) {
+            // return 409 Conflict instead of 200 OK
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(authenticationResponse);
+        }
+
+        // return 201 Created or 200 OK
+        return ResponseEntity.status(HttpStatus.CREATED).body(authenticationResponse);
     }
+
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
