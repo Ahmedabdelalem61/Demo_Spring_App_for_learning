@@ -1,4 +1,4 @@
-package scalable.com.example.demo.PostQuote;
+package scalable.com.example.demo.Quote;
 
 import lombok.*;
 
